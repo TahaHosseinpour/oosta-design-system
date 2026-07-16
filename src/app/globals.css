@@ -1,0 +1,166 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+/* ---------------------------------------------------------------------------
+   OOSTA DESIGN SYSTEM — design tokens
+   This file is the single source of truth for the whole look.
+   Change a value here and the entire system follows. This is the "config"
+   meant to be portable into any consuming project.
+--------------------------------------------------------------------------- */
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* radius scale — soft, generous corners seen across the reference designs */
+  --radius: 0.75rem; /* 12px base */
+
+  /* surfaces */
+  --background: #ffffff;
+  --foreground: #1b2439; /* dark slate-blue, harmonizes with the brand blue */
+
+  --card: #ffffff;
+  --card-foreground: #1b2439;
+
+  --popover: #ffffff;
+  --popover-foreground: #1b2439;
+
+  /* brand color #1 — deep royal blue */
+  --primary: #263e97;
+  --primary-foreground: #ffffff;
+
+  /* brand color #2 — orange (accents, highlights, wallet-style CTAs) */
+  --brand-accent: #fc9003;
+  --brand-accent-foreground: #ffffff;
+
+  /* neutral secondary (muted button / chip backgrounds) */
+  --secondary: #eef1f8;
+  --secondary-foreground: #263e97;
+
+  /* muted (subtle text, subtle fills) */
+  --muted: #f4f6fa;
+  --muted-foreground: #64708a;
+
+  /* accent = neutral hover/active surface (dropdown hover, ghost hover) */
+  --accent: #eef1f8;
+  --accent-foreground: #1b2439;
+
+  /* semantic */
+  --success: #12a150; /* green — prices, positive states */
+  --success-foreground: #ffffff;
+  --warning: #fc9003;
+  --warning-foreground: #ffffff;
+  --destructive: #e5484d; /* red — discounts, danger */
+  --destructive-foreground: #ffffff;
+
+  /* lines & fields */
+  --border: #e6e9f0;
+  --input: #e6e9f0;
+  --input-background: #f4f6fa; /* light-gray filled inputs from the designs */
+  --ring: #263e97;
+
+  /* chart palette (smooth line charts in the references) */
+  --chart-1: #263e97; /* blue */
+  --chart-2: #fc9003; /* orange */
+  --chart-3: #12a150; /* green */
+  --chart-4: #6b8cff; /* light blue */
+  --chart-5: #e5484d; /* red */
+
+  /* sidebar */
+  --sidebar: #ffffff;
+  --sidebar-foreground: #1b2439;
+  --sidebar-primary: #263e97;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #eef1f8;
+  --sidebar-accent-foreground: #263e97;
+  --sidebar-border: #e6e9f0;
+  --sidebar-ring: #263e97;
+
+  /* soft floating-card shadow, tinted with the brand blue */
+  --shadow-card: 0 2px 16px -6px rgb(38 62 151 / 0.14);
+  --shadow-soft: 0 1px 3px 0 rgb(27 36 57 / 0.06);
+}
+
+/* ---- theme mapping: expose tokens as Tailwind color/util names ---- */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-brand-accent: var(--brand-accent);
+  --color-brand-accent-foreground: var(--brand-accent-foreground);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-input-background: var(--input-background);
+  --color-ring: var(--ring);
+
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+
+  --font-sans: var(--font-iranyekan), ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", sans-serif;
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    /* slightly looser leading reads better for Persian text */
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  /* Persian text sits better with tabular-friendly kerning off by default */
+  ::selection {
+    background-color: color-mix(in oklab, var(--primary) 18%, transparent);
+  }
+}
